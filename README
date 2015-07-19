@@ -1,0 +1,34 @@
+This challenge has three parts with graudated levels of difficulty. Each part builds on the last,
+so you will need to implement them in order. Additionally, parts 2 and 3 are more open-ended than
+part 1-- you are encouraged to step outside the confines of the blueprint I provide, and build
+something interesting.
+
+jQuery, Underscore, RSVP and QUint are provided as libraries. Use additional libraries if you
+believe they would help.
+
+Challenges:
+
+1. SimpleMessageQueue. See:
+  - simple_message_queue.html
+  - simple_message_queue.js
+  - simple_message_queue_tests.js
+
+All tests are provided. You should only need to edit simple_message_queue.js
+
+
+2. QueueWithPromises. See:
+  - queue_with_promises.html
+  - queue_with_promises.js
+  - queue_with_promises_tests.js
+
+Some tests are provided. You will need to edit queue_with_promises.js and
+queue_with_promises_tests.js
+
+
+3. NaiveMapReduce. See:
+  - naive_map-reduce.html
+  - naive_map_reduce.js (add this file yourself)
+  - naive_map_reduce_tests.js
+
+No tests are provided, though I've included some example code (to demonstrate how the API could
+look). I've also provided a brief specification of the expected behavior.

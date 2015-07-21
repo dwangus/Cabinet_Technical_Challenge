@@ -1,11 +1,6 @@
 QueueWithPromises = (function () {
-
-  // You may not need or want this inheritance. It's provided as a convenience; feel free to remove
-  // it if you're not using it.
-  var proto = Object.create(SimpleMessageQueue.prototype);
-
-  // Override the subscribe method from the SimpleMessageQueue prototype, if necessary:
-
+  var subscr = {};	// Keys are event names/"types", Paired Values are arrays of callback functions to be executed once published
+  var proto = {
   /**
    * Subscribe to a list of event "types" with the specified callback. Callbacks may return
    * promises.
@@ -13,11 +8,15 @@ QueueWithPromises = (function () {
    * @param {Array} An array of strings, or event "types" to subscribe to.
    * @param {Function} A callback to execute when an event of the right type is published.
    */
-  proto.subscribe = function (types, callback) {
-    throw 'Implement if needed!'
-  };
-
-  // Override the publish method from the SimpleMessageQueue prototype, if necessary:
+  subscribe: function (types, callback) {
+				for (i = 0; i < types.length; i++){
+					event = types[i]
+					if (subscr[event] == null){	
+						subscr[event] = []
+					}
+					subscr[event] = subscr[event].concat(callback)
+				}
+  },
 
   /**
    * Publish an event with the specified event "type" and data. Calls any event-specific callbacks
@@ -31,16 +30,31 @@ QueueWithPromises = (function () {
    *                   promise should wait to reject until all callbacks have either resolved or
    *                   rejected.
    */
-  proto.publish = function (type, data) {
-    throw 'Implement if needed!';
-  };
+  publish: function (type, data) {
+			if (data == null){
+				throw 'Write something damnit!'
+			}
+			return new Promise(function(resolve, reject) {
+				for (var key in subscr){
+					if (key == type){
+						var value = subscr[key];
+						for (i = 0; i < value.length; i++){
+							try{
+								value[i](data).then(function() {
+									resolve()
+								})
+							}
+							catch(err){console.log(err)}
+						}
+					}
+				}
+			})			
+  },}
 
   return {
     prototype: proto,
-
     create: function () {
       var ret = Object.create(proto);
-      ret.subscrptions = {};
       return ret;
     },
   };

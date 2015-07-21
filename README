@@ -1,3 +1,11 @@
 7/19 --
-Today, I continued learning some javascript (as well as how to use Github), and completed the first part simple_message_queue.js.
+Today, I re-started learning some javascript (as well as how to use Github), and completed the first part simple_message_queue.js.
 Will continue working on the technical challenge and learning more javascript tomorrow.
+
+7/20 -- 
+Today, I learned more about what promises were and how to use them, and completed more of queue_with_promises.js.
+As of now, my implementation passes all of the pre-written tests, but I have yet to write and use my own tests, and have yet to 
+implement a reject() condition for my returned promise.
+Tomorrow, I will continue learning more about javascript, promises, and in writing my own tests, the QUnit library.
+(All in all, I have been spending about 2-3 hours each day the last two days on these tasks, parsing them out amidst other classwork and things I have;
+I'd be able to set more time to work on this, but given no strict time limit, and I am setting equal priority with time I would spend on my other work)

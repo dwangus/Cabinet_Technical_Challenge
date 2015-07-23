@@ -65,7 +65,7 @@ QUnit.test("Data can be published in order.", function( assert ) {
   });
 
   queue.publish('asdf', 1).then(function () {
-    return queue.publish('asdf', 2);
+    return queue.publish('asdf', 2);		// What is it returning the promise to?
   }).then(function () {
     return queue.publish('asdf', 3);
   }).then(function () {
@@ -101,8 +101,8 @@ QUnit.test("Callbacks are not necessarily executed in-order.", function( assert 
 
   var start = Date.now();
 
-  RSVP.all([
-    queue.publish('asdf', { content: 1, timeout: 1000 }),
+  RSVP.all([												// This is very useful, because it is saying that only when the array of promises have all been 
+    queue.publish('asdf', { content: 1, timeout: 1000 }),	// resolved can the next .then function operate
     queue.publish('asdf', { content: 2, timeout: 500  }),
   ]).then(function () {
     var end = Date.now();

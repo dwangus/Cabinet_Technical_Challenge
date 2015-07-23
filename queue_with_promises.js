@@ -36,13 +36,13 @@ QueueWithPromises = (function () {
 			}
 			return new Promise(function(resolve, reject) {
 				for (var key in subscr){
-					if (key == type){
-						var value = subscr[key];
-						for (i = 0; i < value.length; i++){
-							try{
-								value[i](data).then(function() {
-									resolve()
-								})
+					if (key == type){						
+						var value = subscr[key];				// an array of functions is value
+						for (i = 0; i < value.length; i++){		// access one index, one specific function (now what if one function returns an array of promises)
+							try{								// how can you handle multiple promises to be resolved/rejected, and not use RSVP.all (which
+								value[i](data).then(function() {// automatically completes if it gets a single reject)
+									resolve()					// When you use RSVP.all().then... resolve(), does it ever get to resolve?
+								})								// Also, can't declare a var of a new array to be used, because it will vanish in the next iteration
 							}
 							catch(err){console.log(err)}
 						}
